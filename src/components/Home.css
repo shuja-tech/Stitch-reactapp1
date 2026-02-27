@@ -1,0 +1,334 @@
+:root{
+  --text:#333;
+  --muted:#6b6b6b;
+  --bg:#fff;
+  --ring:#0d6efd;
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box}
+
+.home{min-height:100dvh;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+
+.nav-wrap{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid #eee}
+
+.nav{
+  max-width:1200px;
+  margin:0 auto;
+  padding:12px 16px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:12px;
+}
+
+.brand{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:800;
+  font-size:28px;
+  letter-spacing:.2px;
+}
+
+.nav-center{justify-self:center}
+.menu{display:flex;gap:28px}
+.menu a,
+.menu-link{
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:700;
+  letter-spacing:.6px;
+  font-size:14px;
+  transition:color .2s ease;
+}
+.menu a:hover,
+.menu-link:hover,
+.menu a.active,
+.menu-link.active{color:var(--text)}
+
+.nav-right{justify-self:end}
+.contact-link{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:800;
+  letter-spacing:.6px;
+  font-size:15px;
+}
+
+.hamburger{
+  display:none;
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  display:block;
+  width:22px;
+  height:2px;
+  background:var(--text);
+  transition:transform .25s ease,opacity .2s ease;
+}
+
+.nav-toggle{display:none}
+
+.drawer{
+  position:fixed;
+  inset:0 0 0 auto;
+  width:min(84vw,320px);
+  translate:100% 0;
+  background:var(--bg);
+  box-shadow:var(--shadow);
+  padding:24px 20px 32px;
+  transition:translate .3s ease;
+  z-index:60;
+  display:flex;
+}
+.drawer-inner{display:flex;flex-direction:column;gap:14px;width:100%}
+.drawer-link{
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:.6px;
+  font-size:16px;
+  color:var(--muted);
+}
+.drawer-link.strong{color:var(--text);font-weight:800}
+.sep{height:1px;background:#eee;margin:6px 0}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.25);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease;
+  z-index:55;
+}
+
+#nav-toggle:checked ~ .drawer{translate:0 0}
+#nav-toggle:checked ~ .overlay{opacity:1;pointer-events:auto}
+#nav-toggle:checked + .hamburger span:nth-child(1){transform:translateY(4px) rotate(45deg)}
+#nav-toggle:checked + .hamburger span:nth-child(2){opacity:0}
+#nav-toggle:checked + .hamburger span:nth-child(3){transform:translateY(-4px) rotate(-45deg)}
+
+.hamburger:focus-visible,
+.menu-link:focus-visible,
+.contact-link:focus-visible,
+.brand:focus-visible,
+.drawer-link:focus-visible{
+  outline:2px solid var(--ring);
+  outline-offset:3px;
+  border-radius:6px;
+}
+
+/* ========== HERO ========== */
+.hero{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  /* cloth manufacturing background */
+  background: url('https://r1.ilikewallpaper.net/ipad-pro-wallpapers/download/86541/lines-abstract-4k-ipad-pro-wallpaper-ilikewallpaper_com.jpg') center/cover no-repeat;
+  position:relative;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.6);
+}
+.hero-inner{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:1200px;
+  padding:40px 16px 24px;
+}
+
+/* Badge */
+.hero-badge{
+  display:inline-block;
+  padding:8px 12px;
+  background:#f3f4f6;          /* light gray */
+  color:#6b6b6b;               /* muted */
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.3px;
+  margin-bottom:18px;
+}
+
+/* Headline */
+.hero-title{
+  font-weight:800;
+  color:#222;
+  line-height:1.15;
+  font-size:clamp(28px, 4vw, 44px);
+  margin-bottom:12px;
+}
+
+/* Subheadline */
+.hero-subtitle{
+  color:#222;
+  font-size:clamp(14px, 2.2vw, 18px);
+  line-height:1.6;
+  margin-bottom:22px;
+}
+
+/* Action buttons (Buy / Rent) */
+.hero-actions{
+  display:flex;
+  gap:12px;
+  margin:18px 0 26px;
+}
+.btn{
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 18px;
+  border-radius:8px;
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.4px;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.btn-primary{
+  background:#111827;
+  color:#fff;
+}
+.btn-primary:hover{ box-shadow:0 6px 16px rgba(0,0,0,.15) }
+.btn-ghost{
+  background:#f9fafb;
+  color:#333;
+  border-color:#e5e7eb;
+}
+.btn-ghost:hover{ background:#f3f4f6 }
+
+/* Quote card (the long light box) */
+.quote-card{
+  margin-top:18px;
+  border:1px solid #e5e7eb;
+  background:#fff;
+  border-radius:12px;
+  padding:16px;
+  display:grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  gap:14px;
+}
+
+/* Fields */
+.field{ display:flex; flex-direction:column; gap:6px }
+.label{
+  color:#6b7280;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.3px;
+}
+.control{ display:flex }
+.select{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  background:#f9fafb;
+  color:#374151;
+  font-weight:600;
+  font-size:14px;
+  outline:none;
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  appearance:none;                 /* clean dropdown look */
+  background-image:
+    linear-gradient(45deg, transparent 50%, #6b7280 50%),
+    linear-gradient(135deg, #6b7280 50%, transparent 50%),
+    linear-gradient(to right, transparent, transparent);
+  background-position:
+    calc(100% - 18px) calc(50% - 4px),
+    calc(100% - 13px) calc(50% - 4px),
+    calc(100% - 2.2rem) 50%;
+  background-size:5px 5px, 5px 5px, 1px 60%;
+  background-repeat:no-repeat;
+}
+.select:focus{
+  border-color:#0d6efd;
+  box-shadow:0 0 0 3px rgba(13,110,253,.15);
+  background:#fff;
+}
+
+.input{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  background:#f9fafb;
+  color:#374151;
+  font-weight:600;
+  font-size:14px;
+  outline:none;
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.input:focus{
+  border-color:#0d6efd;
+  box-shadow:0 0 0 3px rgba(13,110,253,.15);
+  background:#fff;
+}
+
+.input::placeholder{
+  color:#9ca3af;
+}
+
+/* CTA slot inside the grid */
+.field-cta{
+  display:flex;
+  align-items:end;
+}
+.btn-outline{
+  width:100%;
+  border:1px solid #d1d5db;
+  background:darkred;
+  color:#fff;
+  cursor:pointer;
+}
+.btn-outline:hover{
+  border-color:#0d6efd;
+  color:#0d6efd;
+}
+
+/* ------- Responsive layout ------- */
+@media (max-width: 992px){
+  .quote-card{
+    grid-template-columns: repeat(3, minmax(0,1fr));
+  }
+}
+
+@media (max-width: 680px){
+  .hero-inner{ padding:28px 14px 18px }
+  .hero-actions{ gap:10px }
+  .quote-card{
+    grid-template-columns: 1fr;
+    gap:12px;
+  }
+  .field-cta .btn{ width:100% }
+}
+
+
+@media (max-width: 992px){
+  .nav{grid-template-columns:auto auto auto}
+  .nav-center{display:none}
+  .hamburger{display:flex;justify-self:center}
+  .nav-right{justify-self:end}
+}
+
+@media (max-width: 420px){
+  .brand{font-size:24px}
+  .contact-link{font-size:14px}
+}
+
+.page-content{max-width:1200px;margin:24px auto;padding:0 16px}
