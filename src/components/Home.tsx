@@ -15,24 +15,24 @@ export default function Home({ onGetQuotes }: HomeProps) {
     qty: ''
   })
 
-  const [submittedData, setSubmittedData] = useState(formData)
   const [showSummary, setShowSummary] = useState(false)
+  const [submittedData, setSubmittedData] = useState(formData)
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
   const handleGetQuotes = () => {
-    // store data locally and show the quotes summary instead of navigating
+      // store data locally and show the quotes summary instead of navigating
     setSubmittedData(formData)
     setShowSummary(true)
-    // still notify parent if provided (App may ignore it)
     onGetQuotes?.(formData)
   }
 
   const handleEdit = () => {
     setShowSummary(false)
   }
+
   return (
     <div className="home">
       {/* Navbar */}
@@ -127,7 +127,7 @@ export default function Home({ onGetQuotes }: HomeProps) {
       <div className="field">
         <div className="label">Services</div>
         <div className="control">
-          <select className="select" value={formData.service} onChange={(e) => handleChange('service', e.target.value)}>
+          <select title="Services" className="select" value={formData.service} onChange={(e) => handleChange('service', e.target.value)}>
             <option value="">Select service</option>
             <option>Knitting</option>
             <option>Dyeing</option>
@@ -141,7 +141,7 @@ export default function Home({ onGetQuotes }: HomeProps) {
       <div className="field">
         <div className="label">Fabric</div>
         <div className="control">
-          <select className="select" value={formData.fabric} onChange={(e) => handleChange('fabric', e.target.value)}>
+          <select title="Fabric" className="select" value={formData.fabric} onChange={(e) => handleChange('fabric', e.target.value)}>
             <option value="">Have Fabric?</option>
             <option>I have Fabric</option>
             <option>I need Fabric</option>
@@ -154,7 +154,7 @@ export default function Home({ onGetQuotes }: HomeProps) {
       <div className="field">
         <div className="label">Category</div>
         <div className="control">
-          <select className="select" value={formData.category} onChange={(e) => handleChange('category', e.target.value)}>
+          <select title="Category" className="select" value={formData.category} onChange={(e) => handleChange('category', e.target.value)}>
             <option value="">Select Category</option>
             <option>T-Shirts</option>
             <option>Hoodies</option>
@@ -168,7 +168,7 @@ export default function Home({ onGetQuotes }: HomeProps) {
       <div className="field">
         <div className="label">QTY</div>
         <div className="control">
-          <select className="select" value={formData.qty} onChange={(e) => handleChange('qty', e.target.value)}>
+          <select title="Quantity" className="select" value={formData.qty} onChange={(e) => handleChange('qty', e.target.value)}>
             <option value="">Select Qty</option>
             <option>100–499</option>
             <option>500–1,999</option>
